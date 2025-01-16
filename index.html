@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIII - Professional 4K Video Enhancement</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <div class="video-background">
+                <video autoplay muted loop playsinline>
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-with-a-cold-and-serious-expression-39877-large.mp4" type="video/mp4">
+                </video>
+                <div class="overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h1>VIII</h1>
+                <p>Transform your videos into stunning 4K quality with our advanced AI-powered enhancement technology. Experience crystal-clear clarity, vibrant colors, and exceptional detail in every frame.</p>
+                <button id="startUpload" class="glow-effect">
+                    <i class="fas fa-cloud-upload-alt"></i> 
+                    <span>Enhance Your Video</span>
+                </button>
+            </div>
+        </section>
+
+        <div id="uploadModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                
+                <div id="dropZone">
+                    <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                    <h3>Drop your video here</h3>
+                    <p>or click to select</p>
+                    <div class="supported-formats">
+                        Supported formats: MP4, AVI, MOV, WMV
+                    </div>
+                </div>
+                
+                <input type="file" id="fileInput" accept="video/*" style="display: none;">
+                
+                <div id="videoPreview" style="display: none;">
+                    <div class="video-container original-video">
+                        <h3><i class="fas fa-film"></i> Original Video</h3>
+                        <video id="originalVideo" controls></video>
+                    </div>
+                    
+                    <button id="enhance4k" class="enhance-button">
+                        <i class="fas fa-magic"></i> 
+                        <span>Enhance to 4K</span>
+                    </button>
+                    
+                    <div id="enhancementProgress" style="display: none;" class="progress-container">
+                        <div class="current-step">Initializing...</div>
+                        <div class="progress-bar"></div>
+                        <div class="percentage">0%</div>
+                    </div>
+                    
+                    <div id="enhancedVideoContainer" class="video-container enhanced-video" style="display: none;">
+                        <h3><i class="fas fa-star"></i> Enhanced 4K Video</h3>
+                        <video id="enhancedVideo" controls></video>
+                        <button id="downloadButton" class="download-button">
+                            <i class="fas fa-download"></i> 
+                            <span>Download 4K Video</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Secure API Configuration
+        window.API_CONFIG = {
+            initialized: false,
+            key: null,
+            endpoints: {
+                verify: 'https://api.deepai.org/api/torch-srgan'
+            }
+        };
+
+        // Function to securely set API key
+        function initializeAPI(apiKey) {
+            if (window.API_CONFIG.initialized) return;
+            
+            window.API_CONFIG.key = apiKey;
+            window.API_CONFIG.initialized = true;
+            
+            // Enable the enhance button if API key is set
+            const enhanceBtn = document.getElementById('enhance4k');
+            if (enhanceBtn) {
+                enhanceBtn.disabled = false;
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
