@@ -1,0 +1,10 @@
+video_enhancer/
+├── app.py
+├── requirements.txt
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── main.js
+└── templates/
+    └── index.html
